@@ -1,9 +1,20 @@
-import express from "express";
-import colors from "colors";
+const express =  require("express");
+const middleware = require('./middleware');
+const colors = require("colors");
+const path = require('path');
+const dotenv = require('dotenv');
+const connectDB = require('./config/db');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const loginRoute = require('./routes/loginRoutes');
+const registerRoute = require('./routes/registerRoutes');
+
+dotenv.config();
+
+connectDB();
 
 const app = express();
-
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const server = app.listen(port,()=>{
     console.log(`Server listening on port ${port}`.blue.bold);
@@ -12,11 +23,24 @@ const server = app.listen(port,()=>{
 app.set('view engine','pug');
 app.set('views','views');
 
-app.get('/',(req,res,next)=>{
+app.use(bodyParser.urlencoded({extended : false}));
+app.use(express.static(path.join(__dirname,'public')));
+
+app.use(session({
+    secret: "thisisatwitterclone",
+    resave: true,
+    saveUninitialized: false
+}));
+
+//Routes
+app.use('/login',loginRoute);
+app.use('/register',registerRoute);
+
+app.get('/', middleware.requireLogin ,(req,res,next)=>{
     const payload = {
-        pageTitle : 'Homes'
+        pageTitle : 'Homes',
+        userLoggedin: req.session.user
     }
 
     res.status(200).render('home',payload);
 })
-
