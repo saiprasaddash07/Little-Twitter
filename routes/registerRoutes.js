@@ -28,6 +28,11 @@ router.post('/' ,async (req,res,next)=>{
 
     const payload = req.body;
 
+    if(password !== passwordConfirm){
+        payload.errorMessage = "Make sure password and confirm password are same!";
+        return res.redirect('/register',payload);
+    }
+
     if(firstName && lastName && userName && email && password){
         const user = await User.findOne({
             $or: [

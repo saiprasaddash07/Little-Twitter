@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const loginRoute = require('./routes/loginRoutes');
 const registerRoute = require('./routes/registerRoutes');
+const logoutRoute = require('./routes/logout');
 
 dotenv.config();
 
@@ -36,10 +37,12 @@ app.use(session({
 app.use('/login',loginRoute);
 app.use('/register',registerRoute);
 
+app.use('/logout',logoutRoute);
+
 app.get('/', middleware.requireLogin ,(req,res,next)=>{
     const payload = {
         pageTitle : 'Homes',
-        userLoggedin: req.session.user
+        userLoggedIn: req.session.user
     }
 
     res.status(200).render('home',payload);
