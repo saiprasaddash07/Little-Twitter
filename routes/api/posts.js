@@ -7,8 +7,19 @@ const Post = require('../../schemas/postSchema');
 
 app.use(bodyParser.urlencoded({extended : false}));
 
-router.get('/' ,(req,res,next)=>{
-    res.status(200).render('login');
+router.get('/' ,async (req,res,next)=>{
+    const post = await Post.find()
+        .populate("postedBy")
+        .sort({
+            "createdAt" : -1
+        })
+        .catch(e=>{
+            console.log(e);
+            return res.sendStatus(400);
+    });
+    if(post){
+        res.status(200).send(post);
+    }
 })
 
 router.post('/' ,async (req,res,next)=>{
