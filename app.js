@@ -9,6 +9,7 @@ const session = require('express-session');
 const loginRoute = require('./routes/loginRoutes');
 const registerRoute = require('./routes/registerRoutes');
 const logoutRoute = require('./routes/logout');
+const postApiRoutes = require('./routes/api/posts');
 
 dotenv.config();
 
@@ -35,9 +36,13 @@ app.use(session({
 
 //Routes
 app.use('/login',loginRoute);
+
 app.use('/register',registerRoute);
 
 app.use('/logout',logoutRoute);
+
+//Api routes
+app.use('/api/posts',postApiRoutes);
 
 app.get('/', middleware.requireLogin ,(req,res,next)=>{
     const payload = {
