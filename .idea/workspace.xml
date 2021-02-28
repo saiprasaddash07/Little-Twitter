@@ -12,14 +12,11 @@
   <component name="ChangeListManager">
     <list default="true" id="07a67ca1-26e2-465f-bdfe-f5cd3bd99257" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api/posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/posts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/schemas/postSchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/postSchema.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/schemas/userSchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/userSchema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layouts/main-layout.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/main-layout.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/login.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/login.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +64,7 @@
       <workItem from="1613932712462" duration="7655000" />
       <workItem from="1614192581979" duration="5512000" />
       <workItem from="1614361681511" duration="10140000" />
+      <workItem from="1614537954554" duration="5163000" />
     </task>
     <servers />
   </component>

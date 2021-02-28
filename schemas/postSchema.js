@@ -21,7 +21,19 @@ const postSchema = mongoose.Schema({
                 type: mongoose.Schema.Types.ObjectID,
                 ref: 'User',
             }
-        ]
+        ],
+    retweetUsers:
+        [
+            {
+                type: mongoose.Schema.Types.ObjectID,
+                ref: 'User',
+            }
+        ],
+    retweetData:
+            {
+                type: mongoose.Schema.Types.ObjectID,
+                ref: 'Post',
+            },
 },{
     timestamps:true
 });
