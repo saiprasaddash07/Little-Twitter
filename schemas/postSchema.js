@@ -34,6 +34,11 @@ const postSchema = mongoose.Schema({
                 type: mongoose.Schema.Types.ObjectID,
                 ref: 'Post',
             },
+    replyTo:
+            {
+                type: mongoose.Schema.Types.ObjectID,
+                ref: 'Post',
+            },
 },{
     timestamps:true
 });

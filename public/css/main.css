@@ -91,6 +91,16 @@ button span{
     flex: 1;
 }
 
+.modal .postFormContainer{
+    border: none;
+    padding: 0;
+    padding-top: var(--spacing);
+}
+
+.modal .post{
+    padding: 0 0 var(--spacing) 0;
+}
+
 .postFormContainer{
     display: flex;
     padding: var(--spacing);
@@ -216,4 +226,12 @@ button span{
     font-size: 13px;
     color: var(--greyText);
     margin-bottom: 5px;
+}
+
+.replyFlag{
+    margin-bottom: 5px;
+}
+
+.replyFlag a{
+    color: var(--blue);
 }
