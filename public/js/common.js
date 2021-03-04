@@ -84,6 +84,16 @@ $(document).on( "click",".retweetButton" ,event=>{
     })
 })
 
+$(document).on( "click",".post" ,event=>{
+    const element = $(event.target);
+    const postId = getPostIdFromElement(element);
+
+    if(!postId) return;
+    if(!element.is("button")) {
+        window.location.href = '/posts/' + postId;
+    }
+})
+
 function getPostIdFromElement(element) {
     const isRoot = element.hasClass("post");
     const rootElement = (isRoot) ? element : element.closest(".post");
@@ -102,7 +112,7 @@ $("#replyModal").on("show.bs.modal",(event)=>{
     $("#submitReplyButton").data("id",postId);
 
     $.get(`/api/posts/${postId}`, (results) => {
-        outputPosts(results,$("#originalPostContainer"));
+        outputPosts(results.postData, $("#originalPostContainer"));
     })
 })
 
@@ -110,7 +120,7 @@ $("#replyModal").on("hidden.bs.modal",(event)=>{
     $("#originalPostContainer").html("");
 })
 
-function createPostHtmls(postData){
+function createPostHtmls(postData, largeFonts = false){
     if(postData == null){
         return console.log("Post data is null here");
     }
@@ -133,6 +143,8 @@ function createPostHtmls(postData){
     const likeButtonActiveClass = postData.likes.includes(userLoggedIn._id) ? 'active' : "";
     const retweetButtonActiveClass = postData.retweetUsers.includes(userLoggedIn._id) ? 'active' : "";
 
+    const largeFontClass = largeFonts ? "largeFont" : "";
+
     let retweetText = '';
 
     if(isRetweet){
@@ -143,7 +155,10 @@ function createPostHtmls(postData){
     }
 
     let replyFlag = "";
-    if(postData.replyTo){
+    if(postData.replyTo && postData.replyTo._id){
+
+        // HERE WE ARE NOT ALLOWING NESTED REPLIES AFTER 2 LEVELS SO IMPLEMENT IT AFTER FINISH
+
         if(!postData.replyTo._id){
             return console.log("Reply to is not populated");
         }
@@ -157,7 +172,7 @@ function createPostHtmls(postData){
                     </div>`
     }
 
-    return `<div class="post" data-id="${postData._id}">
+    return `<div class="post ${largeFontClass}" data-id="${postData._id}">
                 <div class="postActionContainer">
                     ${retweetText}
                 </div>
@@ -251,6 +266,23 @@ function outputPosts(results,container){
     }
 
     results.forEach(result => {
+        const html = createPostHtmls(result);
+        container.append(html);
+    })
+}
+
+function outputPostsWithReplies(results,container){
+    container.html("");
+
+    if(results.replyTo !== undefined && results.replyTo._id !== undefined){
+        const html = createPostHtmls(results.replyTo);
+        container.append(html);
+    }
+
+    const mainPostHtml = createPostHtmls(results.postData, true);
+    container.append(mainPostHtml);
+
+    results.replies.forEach(result => {
         const html = createPostHtmls(result);
         container.append(html);
     })

@@ -29,8 +29,20 @@ router.get('/' ,async (req,res,next)=>{
 
 router.get('/:id' ,async (req,res,next)=>{
     const postId = req.params.id;
-    let results = await getPosts({_id : postId});
-    results = results[0];
+
+    let postData = await getPosts({_id : postId});
+    postData = postData[0];
+
+    const results = {
+        postData
+    };
+
+    if(postData.replyTo !== undefined){
+        results.replyTo = postData.replyTo;
+    }
+
+    results.replies = await getPosts({replyTo : postId});
+
     res.status(200).send(results);
 })
 
@@ -69,8 +81,6 @@ router.put('/:id/like' ,async (req,res,next)=>{
     const isLiked = req.session.user.likes && req.session.user.likes.includes(postId);
 
     const option = isLiked ? "$pull" : "$addToSet";
-
-    console.log(userId);
 
     req.session.user =  await User.findByIdAndUpdate(userId, {
         [option]: {likes: postId}
