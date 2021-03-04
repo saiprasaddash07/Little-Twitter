@@ -120,6 +120,25 @@ $("#replyModal").on("hidden.bs.modal",(event)=>{
     $("#originalPostContainer").html("");
 })
 
+
+$("#deletePostModal").on("show.bs.modal",(event)=>{
+    const button = $(event.relatedTarget);
+    const postId = getPostIdFromElement(button);
+
+    $("#deletePostButton").data("id",postId);
+})
+
+$("#deletePostButton").click((event)=>{
+    const postId = $(event.target).data("id");
+    $.ajax({
+        url : `/api/posts/${postId}`,
+        type: "DELETE",
+        success: () => {
+            location.reload();
+        }
+    })
+})
+
 function createPostHtmls(postData, largeFonts = false){
     if(postData == null){
         return console.log("Post data is null here");
@@ -172,6 +191,13 @@ function createPostHtmls(postData, largeFonts = false){
                     </div>`
     }
 
+    let button = "";
+    if(postData.postedBy._id === userLoggedIn._id){
+        button = `<button data-id="${postData._id}" data-toggle="modal" data-target="#deletePostModal">
+                        <i class="fas fa-times"></i>
+                  </button>`
+    }
+
     return `<div class="post ${largeFontClass}" data-id="${postData._id}">
                 <div class="postActionContainer">
                     ${retweetText}
@@ -185,6 +211,7 @@ function createPostHtmls(postData, largeFonts = false){
                             <a href="/profile/${postedBy.userName}" class="displayName">${displayName}</a>
                             <span class="username">@${postedBy.userName}</span>
                             <span class="date">${timestamp}</span>
+                            ${button}
                         </div>
                         ${replyFlag}
                         <div class="postBody">

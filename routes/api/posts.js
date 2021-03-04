@@ -143,4 +143,12 @@ router.post('/:id/retweet' ,async (req,res,next)=>{
     res.status(200).send(post);
 })
 
+router.delete("/:id",async (req,res,next)=>{
+    await Post.findByIdAndDelete(req.params.id).catch(e=>{
+        console.log(e);
+        res.sendStatus(404);
+    });
+    return res.sendStatus(202);
+})
+
 module.exports = router;
