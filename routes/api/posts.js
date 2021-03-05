@@ -23,7 +23,15 @@ async function getPosts(filter){
 }
 
 router.get('/' ,async (req,res,next)=>{
-    const results = await getPosts({});
+    const searchObj = req.query;
+
+    if(searchObj.isReply){
+        const isReply = searchObj.isReply === "true";
+        searchObj.replyTo = { $exists : isReply};
+        delete searchObj.isReply;
+    }
+
+    const results = await getPosts(searchObj);
     res.status(200).send(results);
 })
 
