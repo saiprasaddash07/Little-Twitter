@@ -1,0 +1,18 @@
+extends layouts/main-layout.pug
+
+block content
+    if !profileUser
+        span.errorMessage There is no user with this user name 🙄 !
+    else
+        script.
+            const profileUserId = '!{profileUser._id}';
+            const selectedTab = '!{selectedTab}';
+
+        .tabContainer
+            +createTab("Following", `/profile/${profileUser.userName}/following`, selectedTab != "followers")
+            +createTab("Followers", `/profile/${profileUser.userName}/followers`, selectedTab == "followers")
+
+        .resultsContainer
+
+block scripts
+    script(src="/js/followersAndFollowing.js")

@@ -12,6 +12,7 @@ const logoutRoute = require('./routes/logout');
 const postRoute = require('./routes/postRoutes');
 const profileRoute = require('./routes/profileRoutes');
 const postApiRoutes = require('./routes/api/posts');
+const userApiRoutes = require('./routes/api/users');
 
 dotenv.config();
 
@@ -45,6 +46,7 @@ app.use('/profile', middleware.requireLogin ,profileRoute);
 
 //Api routes
 app.use('/api/posts',postApiRoutes);
+app.use('/api/users',userApiRoutes);
 
 app.get('/', middleware.requireLogin ,(req,res,next)=>{
     const payload = {

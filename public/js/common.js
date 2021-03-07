@@ -20,7 +20,6 @@ $("#postTextArea, #replyTextArea").keyup( event =>{
 $("#submitPostButton, #submitReplyButton").click(event=>{
     const button = $(event.target);
     const isModal = button.parents(".modal").length === 1;
-
     const textBox = isModal ? $("#replyTextArea") : $("#postTextArea");
     const data = {
         content : textBox.val()
@@ -92,6 +91,39 @@ $(document).on( "click",".post" ,event=>{
     if(!element.is("button")) {
         window.location.href = '/posts/' + postId;
     }
+})
+
+$(document).on( "click",".followButton" ,event => {
+    const button = $(event.target);
+    const userId = button.data().user;
+
+    if(!userId) return;
+    $.ajax({
+        url : `/api/users/${userId}/follow`,
+        type: "PUT",
+        success: (userData,status,xhr) => {
+            if(xhr.status === "404"){
+                return alert("User not found here");
+            }
+
+            let difference = 1;
+
+            if(userData.following && userData.following.includes(userId)){
+                button.addClass("following");
+                button.text("Following");
+            }else{
+                button.removeClass("following");
+                button.text("Follow");
+                difference = -1;
+            }
+
+            const followersLabel = $("#followersValue");
+            if(followersLabel.length !== 0){
+                const followersText = +followersLabel.text();
+                followersLabel.text(followersText+difference);
+            }
+        }
+    })
 })
 
 function getPostIdFromElement(element) {

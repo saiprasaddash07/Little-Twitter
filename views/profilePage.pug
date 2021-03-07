@@ -5,6 +5,9 @@ block content
         const profileUserId = '!{profileUser._id}';
         const selectedTab = '!{selectedTab}';
 
+    - followerCount = profileUser.followers.length;
+    - followingCount = profileUser.following.length;
+
     if !profileUser
         span.errorMessage There is no user with this user name 🙄 !
     else
@@ -17,7 +20,12 @@ block content
                 if profileUser._id !== userLoggedIn._id
                     a.profileButton(href=`/messages/${profileUser._id}`)
                         i.fas.fa-envelope
-                    +createFollowButton(profileUser,false)
+
+                    - const profileUserId = profileUser._id.toString();
+                    - if(userLoggedIn.following && userLoggedIn.following.includes(profileUserId))
+                        +createFollowButton(profileUser,true)
+                    - else
+                        +createFollowButton(profileUser,false)
             .userDetailsContainer
                 span.displayName #{profileUser.firstName} #{profileUser.lastName}
                 span.username @#{profileUser.userName}
@@ -25,10 +33,10 @@ block content
 
                 .followersContainer
                     a(href=`/profile/${profileUser.userName}/following`)
-                        span.value #{0}
+                        span.value #{followingCount}
                         span Following
                     a(href=`/profile/${profileUser.userName}/followers`)
-                        span.value #{0}
+                        span#followersValue.value #{followerCount}
                         span Followers
 
         .tabContainer
