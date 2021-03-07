@@ -11,10 +11,18 @@ app.set('views','views');
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
 
+// Description
+// @desc    Render login page on landing page
+// @route   GET /login
+// @access  Public
 router.get('/' ,(req,res,next)=>{
     res.status(200).render('login');
 })
 
+// Description
+// @desc    Logging in a user
+// @route   POST/login
+// @access  Public
 router.post('/' ,async (req,res,next)=>{
 
     const payload = req.body;

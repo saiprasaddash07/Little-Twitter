@@ -22,6 +22,10 @@ async function getPosts(filter){
     }
 }
 
+// Description
+// @desc    Getting all the posts of the following user
+// @route   GET /api/posts
+// @access  Private
 router.get('/' ,async (req,res,next)=>{
     const searchObj = req.query;
 
@@ -51,6 +55,10 @@ router.get('/' ,async (req,res,next)=>{
     res.status(200).send(results);
 })
 
+// Description
+// @desc    Getting a post by an id
+// @route   GET /api/posts/:id
+// @access  Private
 router.get('/:id' ,async (req,res,next)=>{
     const postId = req.params.id;
 
@@ -70,6 +78,10 @@ router.get('/:id' ,async (req,res,next)=>{
     res.status(200).send(results);
 })
 
+// Description
+// @desc    Posting a new post
+// @route   POST /api/posts
+// @access  Private
 router.post('/' ,async (req,res,next)=>{
     if(!req.body.content){
         console.log("Content param not sent with request");
@@ -98,6 +110,10 @@ router.post('/' ,async (req,res,next)=>{
     res.status(201).send(post);
 })
 
+// Description
+// @desc    Liking a post form feed
+// @route   PUT /api/posts/:id/like
+// @access  Private
 router.put('/:id/like' ,async (req,res,next)=>{
     const postId = req.params.id;
     const userId = req.session.user._id;
@@ -123,6 +139,10 @@ router.put('/:id/like' ,async (req,res,next)=>{
     res.status(200).send(post);
 })
 
+// Description
+// @desc    Retweeting post
+// @route   POST /api/posts/:id/retweet
+// @access  Private
 router.post('/:id/retweet' ,async (req,res,next)=>{
     // Same condition as above
     const postId = req.params.id;
@@ -167,6 +187,10 @@ router.post('/:id/retweet' ,async (req,res,next)=>{
     res.status(200).send(post);
 })
 
+// Description
+// @desc    Deleting a post based on id
+// @route   DELETE /api/posts/:id
+// @access  Private
 router.delete("/:id",async (req,res,next)=>{
     await Post.findByIdAndDelete(req.params.id).catch(e=>{
         console.log(e);

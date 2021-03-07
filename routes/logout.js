@@ -8,6 +8,10 @@ const bcrypt = require('bcrypt');
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
 
+// Description
+// @desc    Logging out
+// @route   GET /logout
+// @access  Private
 router.get('/' ,(req,res,next)=>{
     if(req.session){
         req.session.destroy(()=>{

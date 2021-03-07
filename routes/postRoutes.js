@@ -10,10 +10,18 @@ app.set('views','views');
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
 
+// Description
+// @desc    Sample route
+// @route   GET /posts
+// @access  Private
 router.get("/",(req,res,next)=>{
     return res.send("Hello");
 })
 
+// Description
+// @desc    Passing some payload for the post page
+// @route   GET /posts/:id
+// @access  Private
 router.get('/:id' ,(req,res,next)=>{
     const payload = {
         pageTitle : 'View post',

@@ -7,6 +7,10 @@ const Post = require('../../schemas/postSchema');
 
 app.use(bodyParser.urlencoded({extended : false}));
 
+// Description
+// @desc    Following user
+// @route   PUT /api/users/:userId/follow
+// @access  Private
 router.put('/:userId/follow' ,async (req,res,next)=>{
     const userId = req.params.userId;
     const user = await User.findById(userId);
@@ -35,6 +39,10 @@ router.put('/:userId/follow' ,async (req,res,next)=>{
     res.status(200).send(req.session.user);
 })
 
+// Description
+// @desc    Get all the following users
+// @route   GET /api/users/:userId/following
+// @access  Private
 router.get('/:userId/following' ,async (req,res,next)=>{
     const results = await User.findById(req.params.userId)
         .populate("following")
@@ -45,6 +53,10 @@ router.get('/:userId/following' ,async (req,res,next)=>{
     res.status(200).send(results);
 })
 
+// Description
+// @desc    Get the followers user
+// @route   GET /api/posts/:userId/followers
+// @access  Private
 router.get('/:userId/followers' ,async (req,res,next)=>{
     const results = await User.findById(req.params.userId)
         .populate("followers")

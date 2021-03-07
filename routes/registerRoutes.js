@@ -13,10 +13,18 @@ app.set('views','views');
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
 
+// Description
+// @desc    Render the register page on landing page
+// @route   GET /register
+// @access  Public
 router.get('/' ,(req,res,next)=>{
     res.status(200).render('register');
 })
 
+// Description
+// @desc    Registration route
+// @route   POST /register
+// @access  Public
 router.post('/' ,async (req,res,next)=>{
 
     const firstName = req.body.firstName.trim();
