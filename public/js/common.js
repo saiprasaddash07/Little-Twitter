@@ -137,6 +137,51 @@ function getPostIdFromElement(element) {
     return postId;
 }
 
+// Global variables
+let cropper;
+
+$("#filePhoto").change((event)=>{
+    const input = $(event.target)[0];
+    if(input.files && input.files[0]){
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const image  = document.getElementById("imagePreview");
+            image.src = e.target.result;
+            if(cropper){
+                cropper.destroy();
+            }
+            cropper = new Cropper(image ,{
+                aspectRatio: 1/1,
+                background: false
+            });
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+})
+
+$("#imageUploadButton").click(()=>{
+    const canvas = cropper.getCroppedCanvas();
+    if(!canvas){
+        console.log("Colud not upload image and make sure it is an image file");
+    }
+
+    canvas.toBlob((blob)=>{
+        const formData = new FormData();
+        formData.append("croppedImage",blob);
+
+        $.ajax({
+            url: "/api/users/profilePicture",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: () => {
+                location.reload();
+            }
+        })
+    })
+})
+
 $("#replyModal").on("show.bs.modal",(event)=>{
     const button = $(event.relatedTarget);
     const postId = getPostIdFromElement(button);

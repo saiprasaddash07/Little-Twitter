@@ -2,8 +2,15 @@ const express =  require("express");
 const app = express();
 const router = express.Router();
 const bodyParser = require('body-parser');
+const multer = require('multer');
+const path = require("path");
+const fs = require("fs");
 const User = require('../../schemas/userSchema');
 const Post = require('../../schemas/postSchema');
+
+const upload = multer({
+    dest : "uploads/"
+});
 
 app.use(bodyParser.urlencoded({extended : false}));
 
@@ -55,7 +62,7 @@ router.get('/:userId/following' ,async (req,res,next)=>{
 
 // Description
 // @desc    Get the followers user
-// @route   GET /api/posts/:userId/followers
+// @route   GET /api/users/:userId/followers
 // @access  Private
 router.get('/:userId/followers' ,async (req,res,next)=>{
     const results = await User.findById(req.params.userId)
@@ -65,6 +72,33 @@ router.get('/:userId/followers' ,async (req,res,next)=>{
         res.sendStatus(400);
     });
     res.status(200).send(results);
+})
+
+// Description
+// @desc    Post the profile image here
+// @route   POST /api/users/profilePicture
+// @access  Private
+router.post('/profilePicture', upload.single("croppedImage"), async (req,res,next)=>{
+    if(!req.file){
+        console.log("No file is uploaded with ajax request");
+        return res.sendStatus(400);
+    }
+
+    const filePath = `/uploads/images/${req.file.filename}.png`;
+    const tempPath = req.file.path;
+    const targetPath = path.join(__dirname,`../../${filePath}`);
+    fs.rename(tempPath,targetPath,async (e)=>{
+        if(e){
+            console.log(e);
+            return res.sendStatus(400);
+        }
+
+        req.session.user = await User.findByIdAndUpdate(req.session.user._id,{
+            profilePic: filePath
+        },{new:true});
+
+        res.sendStatus(204);
+    });
 })
 
 module.exports = router;

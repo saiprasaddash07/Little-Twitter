@@ -16,8 +16,13 @@ block content
 
                 .userImageContainer
                     img(src=profileUser.profilePic, alt="Profile Image")
+
+                    if profileUser._id.toString() === userLoggedIn._id
+                        - console.log(userLoggedIn,profileUser);
+                        button.profilePictureButton(data-toggle="modal", data-target="#imageUploadModal")
+                            i.fas.fa-camera
             .profileButtonContainer
-                if profileUser._id !== userLoggedIn._id
+                if profileUser._id.toString() !== userLoggedIn._id
                     a.profileButton(href=`/messages/${profileUser._id}`)
                         i.fas.fa-envelope
 
@@ -46,6 +51,7 @@ block content
         .postsContainer
 
         +createPostModal(userLoggedIn)
+        +imageUploadModal()
 
 block scripts
     script(src="/js/profile.js")
