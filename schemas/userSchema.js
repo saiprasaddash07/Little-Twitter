@@ -37,6 +37,10 @@ const userSchema = mongoose.Schema({
             type:String,
             default:"/images/profilePic.jpeg"
         },
+    coverPhoto:
+        {
+            type:String
+        },
     likes:
         [
             {

@@ -101,4 +101,31 @@ router.post('/profilePicture', upload.single("croppedImage"), async (req,res,nex
     });
 })
 
+// Description
+// @desc    Post the profile image here
+// @route   POST /api/users/profilePicture
+// @access  Private
+router.post('/coverPhoto', upload.single("croppedImage"), async (req,res,next)=>{
+    if(!req.file){
+        console.log("No file is uploaded with ajax request");
+        return res.sendStatus(400);
+    }
+
+    const filePath = `/uploads/images/${req.file.filename}.png`;
+    const tempPath = req.file.path;
+    const targetPath = path.join(__dirname,`../../${filePath}`);
+    fs.rename(tempPath,targetPath,async (e)=>{
+        if(e){
+            console.log(e);
+            return res.sendStatus(400);
+        }
+
+        req.session.user = await User.findByIdAndUpdate(req.session.user._id,{
+            coverPhoto: filePath
+        },{new:true});
+
+        res.sendStatus(204);
+    });
+})
+
 module.exports = router;

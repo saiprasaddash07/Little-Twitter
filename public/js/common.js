@@ -159,6 +159,25 @@ $("#filePhoto").change((event)=>{
     }
 })
 
+$("#coverPhoto").change((event)=>{
+    const input = $(event.target)[0];
+    if(input.files && input.files[0]){
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const image  = document.getElementById("coverPreview");
+            image.src = e.target.result;
+            if(cropper){
+                cropper.destroy();
+            }
+            cropper = new Cropper(image ,{
+                aspectRatio: 16/9,
+                background: false
+            });
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+})
+
 $("#imageUploadButton").click(()=>{
     const canvas = cropper.getCroppedCanvas();
     if(!canvas){
@@ -171,6 +190,29 @@ $("#imageUploadButton").click(()=>{
 
         $.ajax({
             url: "/api/users/profilePicture",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: () => {
+                location.reload();
+            }
+        })
+    })
+})
+
+$("#coverPhotoUploadButton").click(()=>{
+    const canvas = cropper.getCroppedCanvas();
+    if(!canvas){
+        console.log("Colud not upload image and make sure it is an image file");
+    }
+
+    canvas.toBlob((blob)=>{
+        const formData = new FormData();
+        formData.append("croppedImage",blob);
+
+        $.ajax({
+            url: "/api/users/coverPhoto",
             type: "POST",
             data: formData,
             processData: false,

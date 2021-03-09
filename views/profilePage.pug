@@ -12,13 +12,18 @@ block content
         span.errorMessage There is no user with this user name 🙄 !
     else
         .profileHeaderContainer
-            .coverPhotoContainer
+            .coverPhotoSection
+                .coverPhotoContainer
+                    if profileUser.coverPhoto
+                        img(src=profileUser.coverPhoto, alt="Cover photo")
+                    if profileUser._id.toString() === userLoggedIn._id
+                        button.coverPhotoButton(data-toggle="modal", data-target="#coverPhotoUploadModal")
+                            i.fas.fa-camera
 
                 .userImageContainer
                     img(src=profileUser.profilePic, alt="Profile Image")
 
                     if profileUser._id.toString() === userLoggedIn._id
-                        - console.log(userLoggedIn,profileUser);
                         button.profilePictureButton(data-toggle="modal", data-target="#imageUploadModal")
                             i.fas.fa-camera
             .profileButtonContainer
@@ -52,6 +57,7 @@ block content
 
         +createPostModal(userLoggedIn)
         +imageUploadModal()
+        +coverImageUploadModal()
 
 block scripts
     script(src="/js/profile.js")
