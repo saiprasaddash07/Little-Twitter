@@ -14,9 +14,16 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/userSchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/userSchema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/posts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/images/2984bf8ff4ce495fb8548325c550fbe8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/images/3615d56d5ccce8c43e553598f9ae149f.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/images/611e7f02af90e480d092e4428fe024e8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/images/89e0d90b6fce46b3fa5d8de912426a2c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/images/b1336b7e2b05e39d4aad2d0a61ff233f.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/images/bb0c16dbb6b2b5c3b436597ab80b8422.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/mixins/mixins.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/mixins/mixins.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/postPage.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/postPage.pug" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/profilePage.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/profilePage.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +80,9 @@
       <workItem from="1614967789569" duration="7131000" />
       <workItem from="1615057877190" duration="4358000" />
       <workItem from="1615142417976" duration="5200000" />
-      <workItem from="1615314248741" duration="6806000" />
+      <workItem from="1615314248741" duration="8041000" />
+      <workItem from="1615402112973" duration="1493000" />
+      <workItem from="1615485743611" duration="3161000" />
     </task>
     <servers />
   </component>

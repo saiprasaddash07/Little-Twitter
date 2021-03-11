@@ -43,6 +43,8 @@ mixin createDeletePostModal()
 mixin createPostModal(userLoggedIn)
     +createReplyModal(userLoggedIn)
     +createDeletePostModal()
+    +createPinnedPostModal()
+    +createUnPinPostModal()
 
 mixin createFollowButton(user,isFollowing)
     - text = isFollowing ? "Following" : "Follow"
@@ -87,3 +89,31 @@ mixin coverImageUploadModal()
                 .modal-footer
                     button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
                     button#coverPhotoUploadButton.btn.btn-primary(type='button') Save
+
+mixin createPinnedPostModal()
+    #confirmPinModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='confirmPinModalLabel' aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#confirmPinModalLabel.modal-title Pin this post now ?
+                    button.close(type='button' data-dismiss='modal' aria-label='Close')
+                        span(aria-hidden='true') &times;
+                .modal-body
+                    p This post will appear at the top of your profile. You can pin only one post.
+                .modal-footer
+                    button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+                    button#pinPostButton.btn.btn-primary(type='button') Pin
+
+mixin createUnPinPostModal()
+    #unPinModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='unPinModalLabel' aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    h5#unPinModalLabel.modal-title Unpin this post now ?
+                    button.close(type='button' data-dismiss='modal' aria-label='Close')
+                        span(aria-hidden='true') &times;
+                .modal-body
+                    p This post will be unpinned.
+                .modal-footer
+                    button.btn.btn-secondary(type='button' data-dismiss='modal') Cancel
+                    button#unPinPostButton.btn.btn-primary(type='button') Unpin

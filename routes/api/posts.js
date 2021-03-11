@@ -199,4 +199,27 @@ router.delete("/:id",async (req,res,next)=>{
     return res.sendStatus(202);
 })
 
+// Description
+// @desc    Pinning a post based on id
+// @route   PUT /api/posts/:id
+// @access  Private
+router.put("/:id",async (req,res,next)=>{
+    if(req.body.pinned){
+        await Post.updateMany({
+            postedBy: req.session.user
+        },{
+            pinned: false
+        }).catch(e=>{
+            console.log(e);
+            res.sendStatus(404);
+        });
+    }
+
+    await Post.findByIdAndUpdate(req.params.id, req.body).catch(e=>{
+        console.log(e);
+        res.sendStatus(404);
+    });
+    return res.sendStatus(204);
+})
+
 module.exports = router;
