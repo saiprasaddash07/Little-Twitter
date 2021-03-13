@@ -15,6 +15,46 @@ const upload = multer({
 app.use(bodyParser.urlencoded({extended : false}));
 
 // Description
+// @desc    Searching the users functionality
+// @route   GET /api/users/
+// @access  Private
+router.get('/' ,async (req,res,next)=> {
+    let searchObj = req.query;
+
+    if(req.query.search){
+        searchObj = {
+            $or: [
+                {
+                    firstName: {
+                        $regex: req.query.search,
+                        $options: "i"
+                    }
+                },
+                {
+                    lastName: {
+                        $regex: req.query.search,
+                        $options: "i"
+                    }
+                },
+                {
+                    userName: {
+                        $regex: req.query.search,
+                        $options: "i"
+                    }
+                }
+            ]
+        };
+        const user = await User.find(searchObj).catch(e=>{
+            console.log(e);
+            res.sendStatus(400);
+        });
+        if(user){
+            res.status(200).send(user);
+        }
+    }
+})
+
+// Description
 // @desc    Following user
 // @route   PUT /api/users/:userId/follow
 // @access  Private
