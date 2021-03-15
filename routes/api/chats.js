@@ -38,4 +38,22 @@ router.post('/' ,async (req,res,next)=>{
     res.status(200).send(results);
 })
 
+// Description
+// @desc    Retrieving chats
+// @route   GET /api/chats
+// @access  Private
+router.get('/' ,async (req,res,next)=>{
+    const results = await Chat.find({
+        users: {
+            $elemMatch: { // users object is an array and we are trying to find the chats in which we are part of
+                $eq: req.session.user._id
+            }
+        }
+    }).populate("users").catch(e=>{
+        console.log(e);
+        return res.sendStatus(400);
+    })
+    res.status(200).send(results);
+})
+
 module.exports = router;
