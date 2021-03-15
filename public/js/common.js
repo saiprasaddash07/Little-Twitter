@@ -139,6 +139,8 @@ function getPostIdFromElement(element) {
 
 // Global variables
 let cropper;
+let timer;
+let selectedUsers = [];
 
 $("#filePhoto").change((event)=>{
     const input = $(event.target)[0];
@@ -199,6 +201,32 @@ $("#imageUploadButton").click(()=>{
             }
         })
     })
+})
+
+$("#userSearchTextBox").keydown((event)=>{
+    clearTimeout(timer);
+    const textBox = $(event.target);
+    let value = textBox.val();
+
+    if(value === "" && (event.which === 8 || event.keyCode === 8)){
+        //remove user from selection
+        selectedUsers.pop();
+        updateSelectedUsers();
+        $(".resultsContainer").html("");
+        if(selectedUsers.length === 0){
+            $("#createChatButton").prop("disabled",true);
+        }
+        return;
+    }
+
+    timer = setTimeout(()=>{
+        value = textBox.val().trim();
+        if(value === ""){
+            $(".resultsContainer").html("");
+        }else{
+            searchUsers(value);
+        }
+    },1000);
 })
 
 $("#coverPhotoUploadButton").click(()=>{
@@ -303,6 +331,16 @@ $("#unPinPostButton").click((event)=>{
             }
             location.reload();
         }
+    })
+})
+
+$("#createChatButton").click((event)=>{
+    const data = JSON.stringify(selectedUsers);
+    $.post(`/api/chats`, { users: data}, chat => {
+        if(!chat || !chat._id){
+            console.log("Invalid response from the server");
+        }
+        window.location.href = `/messages/${chat._id}`;
     })
 })
 
@@ -543,4 +581,54 @@ function outputUsers(results,container) {
         const html = createUserHtml(result,true);
         container.append(html);
     })
+}
+
+function userSelected(user){
+    selectedUsers.push(user);
+    updateSelectedUsers();
+    $("#userSearchTextBox").val("").focus();
+    $(".resultsContainer").html("");
+    $("#createChatButton").prop("disabled",false);
+}
+
+function outputSelectableUsers(results,container) {
+    container.html("");
+
+    if(results.length === 0){
+        container.append("<span class='noResults'>No results found already!</span>");
+    }
+
+    results.forEach(result => {
+        if(result._id === userLoggedIn._id || selectedUsers.some(u => u._id === result._id)){
+            return;
+        }
+
+        const html = createUserHtml(result,false);
+        const element = $(html);
+        element.click(()=>{
+            userSelected(result);
+        })
+        container.append(element);
+    })
+}
+
+function searchUsers(searchTerm){
+    $.get("/api/users", {
+        search : searchTerm
+    }, results => {
+        outputSelectableUsers(results,$(".resultsContainer"))
+    })
+}
+
+function updateSelectedUsers() {
+    const elements = [];
+    selectedUsers.forEach(user=>{
+        const name = user.firstName + " " + user.lastName;
+        const userElement = $(`
+            <span class="selectedUser">${name}</span>
+        `);
+        elements.push(userElement);
+    })
+    $(".selectedUser").remove();
+    $("#selectedUsers").prepend(elements);
 }
