@@ -49,7 +49,9 @@ router.get('/' ,async (req,res,next)=>{
                 $eq: req.session.user._id
             }
         }
-    }).populate("users").catch(e=>{
+    }).populate("users")
+    .sort({updatedAt: -1})
+    .catch(e=>{
         console.log(e);
         return res.sendStatus(400);
     })
