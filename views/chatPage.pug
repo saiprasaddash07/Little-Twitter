@@ -7,5 +7,21 @@ block content
         script.
             const chatId = '!{chat._id}';
 
+        .chatPageContainer
+            .chatTitleBarContainer
+                +createChatImage(chat,userLoggedIn)
+                span#chatName(data-toggle="modal", data-target = "#chatNameModal") This is the chat
+
+            .mainContentContainer
+                .chatContainer
+                    .chatMessages
+
+                    .footer
+                        textarea(name="messageInput", placeholder="Type a message....")
+                        button.sendMessageButton
+                            i.fas.fa-paper-plane
+
+        +createChatNamePostModal(chat)
+
 block scripts
     script(src="/js/chatPage.js")
