@@ -17,6 +17,7 @@ const messagesRoute = require('./routes/messagesRoutes');
 const postApiRoutes = require('./routes/api/posts');
 const chatApiRoutes = require('./routes/api/chats');
 const userApiRoutes = require('./routes/api/users');
+const messageApiRoutes = require('./routes/api/messages');
 
 dotenv.config();
 
@@ -55,6 +56,7 @@ app.use('/messages', middleware.requireLogin ,messagesRoute);
 app.use('/api/posts',postApiRoutes);
 app.use('/api/chats',chatApiRoutes);
 app.use('/api/users',userApiRoutes);
+app.use('/api/messages',messageApiRoutes);
 
 app.get('/', middleware.requireLogin ,(req,res,next)=>{
     const payload = {

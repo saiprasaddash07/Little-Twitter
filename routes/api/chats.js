@@ -3,6 +3,7 @@ const app = express();
 const router = express.Router();
 const bodyParser = require('body-parser');
 const User = require('../../schemas/userSchema');
+const Message = require('../../schemas/messageSchema');
 const Chat = require('../../schemas/chatSchema');
 
 app.use(bodyParser.urlencoded({extended : false}));
@@ -43,18 +44,22 @@ router.post('/' ,async (req,res,next)=>{
 // @route   GET /api/chats
 // @access  Private
 router.get('/' ,async (req,res,next)=>{
-    const results = await Chat.find({
+    let results = await Chat.find({
         users: {
             $elemMatch: { // users object is an array and we are trying to find the chats in which we are part of
                 $eq: req.session.user._id
             }
         }
     }).populate("users")
+    .populate("latestMessage")
     .sort({updatedAt: -1})
     .catch(e=>{
         console.log(e);
         return res.sendStatus(400);
     })
+    results = await User.populate(results,{
+        path: "latestMessage.sender"
+    });
     res.status(200).send(results);
 })
 
@@ -88,6 +93,22 @@ router.put('/:chatId' ,async (req,res,next)=>{
         return res.sendStatus(400);
     })
     res.sendStatus(204);
+})
+
+
+// Description
+// @desc    Retrieving messages by id
+// @route   GET /api/chats/:chatId/messages
+// @access  Private
+router.get('/:chatId/messages' ,async (req,res,next)=>{
+    const results = await Message.find({
+        chat: req.params.chatId
+    }).populate("sender")
+        .catch(e=>{
+            console.log(e);
+            return res.sendStatus(400);
+        })
+    res.status(200).send(results);
 })
 
 module.exports = router;

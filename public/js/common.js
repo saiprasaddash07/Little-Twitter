@@ -345,7 +345,7 @@ $("#createChatButton").click((event)=>{
 })
 
 function createPostHtmls(postData, largeFonts = false){
-    if(postData == null){
+    if(!postData){
         return console.log("Post data is null here");
     }
 
@@ -353,6 +353,11 @@ function createPostHtmls(postData, largeFonts = false){
     const retweetedBy = isRetweet ? postData.postedBy.userName : null;
 
     postData = isRetweet ? postData.retweetData : postData;
+
+    // If retweet is deleted problem arising solve this
+    if(!postData){
+        return console.log("Post data is null here");
+    }
 
     const postedBy = postData.postedBy;
 

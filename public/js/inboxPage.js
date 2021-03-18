@@ -9,10 +9,19 @@ function outputChatList(chatList, container) {
     })
 }
 
+function getLatestMessage(latestMessage){
+    if(latestMessage){
+        const sender = latestMessage.sender;
+        return `${sender.firstName} ${sender.lastName}: ${latestMessage.content}`;
+    }
+
+    return "New Chat";
+}
+
 function createChatHtml(chatData){
     const chatName = getChatName(chatData);
     const image = getChatImageElements(chatData);
-    const latestMessage = "Hello there";
+    const latestMessage = getLatestMessage(chatData.latestMessage);
 
     return `<a href="/messages/${chatData._id}" class="resultListItem">
                 ${image}

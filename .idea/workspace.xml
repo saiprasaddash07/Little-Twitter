@@ -12,12 +12,13 @@
   <component name="ChangeListManager">
     <list default="true" id="07a67ca1-26e2-465f-bdfe-f5cd3bd99257" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/chatPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/chatPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/inboxPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/inboxPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api/chats.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/chats.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/chatPage.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/chatPage.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/mixins/mixins.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/mixins/mixins.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +51,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/images" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -79,7 +85,10 @@
       <workItem from="1615577294831" duration="2541000" />
       <workItem from="1615660513606" duration="7217000" />
       <workItem from="1615832639708" duration="7132000" />
-      <workItem from="1615919962790" duration="5690000" />
+      <workItem from="1615919962790" duration="6509000" />
+      <workItem from="1616005558158" duration="7969000" />
+      <workItem from="1616083973844" duration="551000" />
+      <workItem from="1616090207242" duration="4333000" />
     </task>
     <servers />
   </component>
