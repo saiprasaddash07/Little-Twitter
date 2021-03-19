@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const User = require('../../schemas/userSchema');
 const Message = require('../../schemas/messageSchema');
 const Chat = require('../../schemas/chatSchema');
-const Hello = require('../../schemas/helloSchema');
 
 app.use(bodyParser.urlencoded({extended : false}));
 
@@ -31,6 +30,7 @@ router.post('/' ,async (req,res,next)=>{
     });
     message = await message.populate("sender").execPopulate();
     message = await message.populate("chat").execPopulate();
+    message = await User.populate(message,{path: "chat.users"});
     Chat.findByIdAndUpdate(req.body.chatId,{
         latestMessage: message
     }).catch(e=>{
