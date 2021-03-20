@@ -13,15 +13,9 @@
     <list default="true" id="07a67ca1-26e2-465f-bdfe-f5cd3bd99257" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/chatPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/chatPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api/messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/messages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schemas/helloSchema.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/chatPage.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/chatPage.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layouts/main-layout.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/main-layout.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/posts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/users.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +88,8 @@
       <workItem from="1616083973844" duration="551000" />
       <workItem from="1616090207242" duration="9185000" />
       <workItem from="1616181715591" duration="469000" />
-      <workItem from="1616182325271" duration="2865000" />
+      <workItem from="1616182325271" duration="3169000" />
+      <workItem from="1616264064911" duration="3652000" />
     </task>
     <servers />
   </component>

@@ -3,6 +3,7 @@ const app = express();
 const router = express.Router();
 const bodyParser = require('body-parser');
 const User = require('../../schemas/userSchema');
+const Notification = require('../../schemas/notificationSchema');
 const Post = require('../../schemas/postSchema');
 
 app.use(bodyParser.urlencoded({extended : false}));
@@ -115,6 +116,14 @@ router.post('/' ,async (req,res,next)=>{
         path: "postedBy"
     })
 
+    post = await Post.populate(post,{
+        path: "replyTo"
+    })
+
+    if(post.replyTo){
+        await Notification.insertNotification(post.replyTo.postedBy,req.session.user._id,"reply",post._id);
+    }
+
     res.status(201).send(post);
 })
 
@@ -143,6 +152,10 @@ router.put('/:id/like' ,async (req,res,next)=>{
         console.log(e);
         res.sendStatus(400);
     });
+
+    if(!isLiked){
+        await Notification.insertNotification(post.postedBy,userId,"postLike",post._id);
+    }
 
     res.status(200).send(post);
 })
@@ -191,6 +204,10 @@ router.post('/:id/retweet' ,async (req,res,next)=>{
         console.log(e);
         res.sendStatus(400);
     });
+
+    if(!deletedPost){
+        await Notification.insertNotification(post.postedBy,userId,"retweet",post._id);
+    }
 
     res.status(200).send(post);
 })
