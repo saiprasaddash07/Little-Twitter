@@ -20,6 +20,7 @@ const postApiRoutes = require('./routes/api/posts');
 const chatApiRoutes = require('./routes/api/chats');
 const userApiRoutes = require('./routes/api/users');
 const messageApiRoutes = require('./routes/api/messages');
+const notificationApiRoutes = require('./routes/api/notifications');
 
 dotenv.config();
 
@@ -62,6 +63,7 @@ app.use('/api/posts',postApiRoutes);
 app.use('/api/chats',chatApiRoutes);
 app.use('/api/users',userApiRoutes);
 app.use('/api/messages',messageApiRoutes);
+app.use('/api/notifications',notificationApiRoutes);
 
 app.get('/', middleware.requireLogin ,(req,res,next)=>{
     const payload = {

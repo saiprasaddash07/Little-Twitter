@@ -57,6 +57,14 @@ router.get('/' ,async (req,res,next)=>{
         console.log(e);
         return res.sendStatus(400);
     })
+
+    if(req.query.unreadOnly && req.query.unreadOnly === "true"){
+        results = results.filter(r => {
+            if(!r.latestMessage) return;
+            return !r.latestMessage.readBy.includes(req.session.user._id);
+        })
+    }
+
     results = await User.populate(results,{
         path: "latestMessage.sender"
     });

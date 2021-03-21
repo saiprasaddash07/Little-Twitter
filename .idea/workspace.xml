@@ -13,9 +13,13 @@
     <list default="true" id="07a67ca1-26e2-465f-bdfe-f5cd3bd99257" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/chats.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/chats.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api/messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/messages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/posts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layouts/main-layout.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/main-layout.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/notificationPage.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/notificationPage.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +93,8 @@
       <workItem from="1616090207242" duration="9185000" />
       <workItem from="1616181715591" duration="469000" />
       <workItem from="1616182325271" duration="3169000" />
-      <workItem from="1616264064911" duration="3652000" />
+      <workItem from="1616264064911" duration="8121000" />
+      <workItem from="1616350433785" duration="5448000" />
     </task>
     <servers />
   </component>
@@ -121,9 +126,9 @@
       <screen x="0" y="23" width="1440" height="816" />
     </state>
     <state x="203" y="65" key="SettingsEditor/0.23.1440.816@0.23.1440.816" timestamp="1616182187957" />
-    <state x="385" y="163" width="670" height="676" key="search.everywhere.popup" timestamp="1613591216085">
+    <state x="385" y="163" width="670" height="676" key="search.everywhere.popup" timestamp="1616354635457">
       <screen x="0" y="23" width="1440" height="816" />
     </state>
-    <state x="385" y="163" width="670" height="676" key="search.everywhere.popup/0.23.1440.816@0.23.1440.816" timestamp="1613591216085" />
+    <state x="385" y="163" width="670" height="676" key="search.everywhere.popup/0.23.1440.816@0.23.1440.816" timestamp="1616354635457" />
   </component>
 </project>

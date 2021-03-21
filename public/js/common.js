@@ -1,3 +1,8 @@
+$(document).ready(()=>{
+    refreshNotificationsBadge();
+    refreshMessagesBadge();
+})
+
 $("#postTextArea, #replyTextArea").keyup( event =>{
     const textBox = $(event.target);
     const value = textBox.val().trim();
@@ -91,6 +96,17 @@ $(document).on( "click",".post" ,event=>{
     if(!element.is("button")) {
         window.location.href = '/posts/' + postId;
     }
+})
+
+$(document).on("click",".notification.active",(e)=>{
+    const container = $(e.target);
+    const notificationId = container.data().id;
+
+    const href = container.attr("href");
+    e.preventDefault();
+
+    const callback = () => window.location = href;
+    markNotificationsAsOpened(notificationId,callback);
 })
 
 $(document).on( "click",".followButton" ,event => {
@@ -661,4 +677,42 @@ function messageReceived(newMessage){
     }else{
         addChatMessageHTML(newMessage);
     }
+}
+
+function markNotificationsAsOpened(notificationId=null,callback= null){
+    if(!callback){
+        callback = () => location.reload();
+    }
+
+    const url = notificationId ? `/api/notifications/${notificationId}/markAsOpened` : `/api/notifications/markAsOpened`;
+
+    $.ajax({
+        url,
+        type: "PUT",
+        success : () => {
+            callback();
+        }
+    })
+}
+
+function refreshMessagesBadge(){
+    $.get("/api/chats",{unreadOnly : "true"},(data)=>{
+        const numResults = data.length;
+        if(numResults > 0){
+            $("#messageBadge").text(numResults).addClass("active");
+        }else{
+            $("#messageBadge").text("").removeClass("active");
+        }
+    })
+}
+
+function refreshNotificationsBadge(){
+    $.get("/api/notifications",{unreadOnly : "true"},(data)=>{
+        const numResults = data.length;
+        if(numResults > 0){
+            $("#notificationBadge").text(numResults).addClass("active");
+        }else{
+            $("#notificationBadge").text("").removeClass("active");
+        }
+    })
 }
