@@ -42,7 +42,7 @@ app.use(bodyParser.urlencoded({extended : false}));
 app.use(express.static(path.join(__dirname,'public')));
 
 app.use(session({
-    secret: "thisisatwitterclone",
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: false
 }));
@@ -67,7 +67,7 @@ app.use('/api/notifications',notificationApiRoutes);
 
 app.get('/', middleware.requireLogin ,(req,res,next)=>{
     const payload = {
-        pageTitle : 'Homes',
+        pageTitle : 'Home',
         userLoggedIn: req.session.user,
         userLoggedInJs: JSON.stringify(req.session.user)
     }
