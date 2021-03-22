@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended : false}));
 
 // Description
 // @desc    Get notification
-// @route   POST /api/notifications
+// @route   GET /api/notifications
 // @access  Private
 router.get('/' ,async (req,res,next)=>{
     const searchObj = {
@@ -27,6 +27,23 @@ router.get('/' ,async (req,res,next)=>{
     }
 
     const notification = await Notification.find(searchObj)
+    .populate("userTo")
+    .populate("userFrom")
+    .sort({createdAt: -1})
+    .catch(e=>{
+        console.log(e);
+        res.sendStatus(400);
+    });
+    res.status(200).send(notification);
+})
+
+// Description
+// @desc    Updating the notification badge
+// @route   GET /api/notifications
+// @access  Private
+router.get('/latest' ,async (req,res,next)=>{
+
+    const notification = await Notification.findOne({userTo: req.session.user._id})
     .populate("userTo")
     .populate("userFrom")
     .sort({createdAt: -1})

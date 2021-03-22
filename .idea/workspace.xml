@@ -14,12 +14,15 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/chatPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/chatPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/clientSocket.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/clientSocket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/inboxPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/inboxPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/notificationPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/notificationPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api/chats.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/chats.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/messages.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/messages.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/notifications.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/chatPage.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/chatPage.pug" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/layouts/main-layout.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/main-layout.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/notificationPage.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/notificationPage.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +97,8 @@
       <workItem from="1616181715591" duration="469000" />
       <workItem from="1616182325271" duration="3169000" />
       <workItem from="1616264064911" duration="8121000" />
-      <workItem from="1616350433785" duration="5448000" />
+      <workItem from="1616350433785" duration="6482000" />
+      <workItem from="1616435487064" duration="4755000" />
     </task>
     <servers />
   </component>
@@ -118,6 +122,10 @@
       <screen x="0" y="23" width="1440" height="816" />
     </state>
     <state x="582" y="236" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.816@0.23.1440.816" timestamp="1613849929893" />
+    <state x="147" y="123" width="1193" height="616" key="DiffContextDialog" timestamp="1616356488509">
+      <screen x="0" y="23" width="1440" height="816" />
+    </state>
+    <state x="147" y="123" width="1193" height="616" key="DiffContextDialog/0.23.1440.816@0.23.1440.816" timestamp="1616356488509" />
     <state x="373" y="194" width="694" height="645" key="EditFileWatcherDialog" timestamp="1613592850531">
       <screen x="0" y="23" width="1440" height="816" />
     </state>
@@ -126,9 +134,9 @@
       <screen x="0" y="23" width="1440" height="816" />
     </state>
     <state x="203" y="65" key="SettingsEditor/0.23.1440.816@0.23.1440.816" timestamp="1616182187957" />
-    <state x="385" y="163" width="670" height="676" key="search.everywhere.popup" timestamp="1616354635457">
+    <state x="385" y="163" width="670" height="676" key="search.everywhere.popup" timestamp="1616439219396">
       <screen x="0" y="23" width="1440" height="816" />
     </state>
-    <state x="385" y="163" width="670" height="676" key="search.everywhere.popup/0.23.1440.816@0.23.1440.816" timestamp="1616354635457" />
+    <state x="385" y="163" width="670" height="676" key="search.everywhere.popup/0.23.1440.816@0.23.1440.816" timestamp="1616439219396" />
   </component>
 </project>

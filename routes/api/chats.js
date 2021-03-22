@@ -119,4 +119,22 @@ router.get('/:chatId/messages' ,async (req,res,next)=>{
     res.status(200).send(results);
 })
 
+// Description
+// @desc    Marking all messages as read
+// @route   PUT /api/chats/:chatId/messages/markAsRead
+// @access  Private
+router.put('/:chatId/messages/markAsRead' ,async (req,res,next)=>{
+    await Message.updateMany({
+        chat: req.params.chatId
+    },{
+        $addToSet: {
+            readBy: req.session.user._id
+        }
+    }).catch(e=>{
+            console.log(e);
+            return res.sendStatus(400);
+        })
+    res.status(204);
+})
+
 module.exports = router;

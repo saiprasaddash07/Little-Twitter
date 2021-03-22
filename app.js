@@ -106,4 +106,8 @@ io.on("connection",(socket)=>{
             socket.in(user._id).emit("message received", newMessage);
         })
     })
+
+    socket.on("notification received", room => {
+        socket.in(room).emit("notification received");
+    })
 })
